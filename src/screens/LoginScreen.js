@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Alert, Form } from 'react-bootstrap'
 import { Spin } from 'antd';
 import "../styles/login.css";
-import { login } from '../redux/actions/usersActions'
+import { login, getUserData } from '../redux/actions/usersActions'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -27,21 +27,19 @@ function LoginScreen(props) {
         e.preventDefault();//prevemnt default behaviour when submit button is clicked. preved refresh of page
         //DISPATCH LOGIN action. pass email and password that user typed
         console.log(JSON.stringify(user))
-        // dispatch(login(user.username, user.password, () => {
-            
-        // }));
-        // this.props.getUserData();
-            // this.props.getUserCompany();
-            // this.props.history.push('/search')
+        dispatch(login(user.username, user.password, () =>{
+            dispatch(getUserData());
+            navigate('/')
+        }))
     }
     //we want to redirect if we already logged in
     useEffect(() => {
-        // if (usersReducer.currentUser !== null) {//if user info exist than means we already are logged in
-        //     navigate('/search')//redirect to whatever is in redirect
-        // } else {
-        //     navigate('/login')
-        // }
-    }, [])
+        if (usersReducer.currentUser !== null) {//if user info exist than means we already are logged in
+            navigate('/')//redirect to whatever is in redirect
+        } else {
+            navigate('/login')
+        }
+    }, [usersReducer.currentUser, ])
 
     return (
         <>
