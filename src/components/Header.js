@@ -85,7 +85,7 @@ function Header(props) {
             {/* <!-- header start --> */}
             <header class="header">
                 <div class="container">
-                    <div class="row v-center">
+                    <div class="container-row v-center">
                         <div class="header-item item-left">
                             <div class="logo">
                                 <a href="#">MyStore</a>
