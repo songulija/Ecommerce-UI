@@ -2,11 +2,13 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {usersReducer, userInfoReducer} from './reducers/usersReducer'
+import {categoriesReducer} from './reducers/categoriesReducer'
 import Cookies from 'js-cookie'
 
 const allReducers = combineReducers({
     usersReducer,
-    userInfoReducer
+    userInfoReducer,
+    categoriesReducer
 })
 
 //we want to get userInfo from localStorage if its there. if its  there we need to convert JSON string into object
