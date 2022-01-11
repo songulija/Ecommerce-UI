@@ -8,21 +8,21 @@ export const categoriesReducer = (state = {categories: []},action)=>{
             return {...state, loading: true}
         case 'CATEGORIES_CREATE_SUCCESS':
             // add new object to list
-            const categories = [...state.categories, {...action.payload}]
-            return {...state, loading: false, 'categories':categories}
+            const new_categories = [...state.categories, {...action.payload}]
+            return {...state, loading: false, categories:new_categories}
         case 'CATEGORIES_UPDATE_REQUEST':
             return {...state, loading: true }
         case 'CATEGORIES_UPDATE_SUCCESS':
             // map through categories and change obj with same id to updated one(ojb from action.payload)
-            const categories = state.categories;
-            const updated = categories.map(x => x.id === action.payload.id?action.payload:x)
+            const categories_clone = state.categories;
+            const updated = categories_clone.map(x => x.id === action.payload.id?action.payload:x)
             return {...state, loading: false, 'categories':updated}
         case 'CATEGORIES_DELETE_REQUEST':
             return {...state, loading: true}
         case 'CATEGORIES_DELETE_SUCCESS':
             // filter through categories. it will return only those elements that match condition
-            const categories = state.categories.filter(x => x.id !== action.payload.id)
-            return {...state, loading: false, 'categories':categories}
+            const updated_categories = state.categories.filter(x => x.id !== action.payload.id)
+            return {...state, loading: false, categories:updated_categories}
         case 'ERROR':
             return {...state, loading: false, error: action.payload}
         default: 
