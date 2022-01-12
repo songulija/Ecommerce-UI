@@ -228,13 +228,6 @@ function Header(props) {
                     </div>
                 </div>
             </header>
-            {/* <!-- header end --> */}
-
-            {/* <!-- banner start --> */}
-            <section class="banner-section">
-
-            </section>
-            {/* <!-- banner end --> */}
 
         </>
     )

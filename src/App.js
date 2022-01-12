@@ -4,6 +4,7 @@ import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen'
 import {Container} from 'react-bootstrap'
+import AdminBrandsScreen from './screens/admin/AdminBrandsScreen';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/login' element={<LoginScreen/>}/>
+          <Route path='/admin/brands' element={<AdminBrandsScreen/>}/>
           <Route path='/' element={<HomeScreen/>} exact/>
         </Routes>
       </Router>

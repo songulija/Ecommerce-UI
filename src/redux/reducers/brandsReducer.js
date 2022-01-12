@@ -21,7 +21,7 @@ export const brandsReducer = (state = {brands: []},action)=>{
             return {...state, loading: true}
         case 'BRANDS_DELETE_SUCCESS':
             // returns elements by specified condition
-            const updated_brands = state.brands.filter(x => x.id !== action.payload.id)
+            const updated_brands = state.brands.filter(x => x.id !== action.payload)
             return {...state, loading: false, brands: updated_brands}
         case 'ERROR':
             return {...state, loading: false, error: action.payload}
