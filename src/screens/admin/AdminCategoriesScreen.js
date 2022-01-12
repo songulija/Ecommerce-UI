@@ -4,7 +4,6 @@ import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm } from 'an
 // import {Button} from 'react-bootstrap'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
-import { getBrands, createBrand, updateBrand, deleteBrand } from '../../redux/actions/brandsActions'
 import { useNavigate } from 'react-router-dom'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../../redux/actions/categoriesActions'
 import AddCategoryComponent from '../../components/admin_categories/AddCategoryComponent';

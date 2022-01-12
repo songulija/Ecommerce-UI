@@ -207,6 +207,7 @@ function Header(props) {
                                             <ul>
                                                 <li><a href="/admin/brands">Prekių ženklai</a></li>
                                                 <li><a href="/admin/categories">Kategorijos</a></li>
+                                                <li><a href="/admin/products">Produktai</a></li>
                                             </ul>
                                         </div>
                                     </li>:null}

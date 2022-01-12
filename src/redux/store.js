@@ -4,13 +4,15 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {usersReducer, userInfoReducer} from './reducers/usersReducer'
 import {categoriesReducer} from './reducers/categoriesReducer'
 import { brandsReducer } from './reducers/brandsReducer';
+import {productsReducer } from './reducers/productsReducer'
 import Cookies from 'js-cookie'
 
 const allReducers = combineReducers({
     usersReducer,
     userInfoReducer,
     categoriesReducer,
-    brandsReducer
+    brandsReducer,
+    productsReducer
 })
 
 //we want to get userInfo from localStorage if its there. if its  there we need to convert JSON string into object
