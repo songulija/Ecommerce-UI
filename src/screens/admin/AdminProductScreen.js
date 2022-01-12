@@ -1,11 +1,12 @@
 import react, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm,Tag } from 'antd';
+import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm, Tag } from 'antd';
 // import {Button} from 'react-bootstrap'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
 import { getProducts, createProduct, updateProduct, deleteProduct } from '../../redux/actions/productsActions'
 import { useNavigate } from 'react-router-dom'
+import AddProductComponent from '../../components/admin_products/AddProductComponent';
 
 
 function AdminProductScreen(props) {
@@ -69,14 +70,15 @@ function AdminProductScreen(props) {
             title: 'Atnaujinti',
             width: '5%',
             render: (text, record, index) => (
-                <Button onClick={showUpdateComponent(record)}>Atnaujinti</Button>
+                <Button onClick={(e) => showUpdateComponent(record)}>Atnaujinti</Button>
             )
         },
         {
             title: 'Ištrinti',
+            dataIndex: 'id',
             width: '5%',
             render: (text, record, index) => (
-                <Popconfirm title="Tikrai ištrinti?" onConfirm={() => recordDelete(record.id)}>
+                <Popconfirm title="Tikrai ištrinti?" onConfirm={() => recordDelete(text)}>
                     <Button type="primary" danger >Ištrinti</Button>
                 </Popconfirm>
             )
@@ -91,7 +93,7 @@ function AdminProductScreen(props) {
             dataIndex: 'brand',
             width: '5%',
             render: (text, record, index) => (
-                <Typography.Text>{record.title}</Typography.Text>
+                <Typography.Text>{text.title}</Typography.Text>
             )
         },
         {
@@ -145,32 +147,32 @@ function AdminProductScreen(props) {
             width: '5%'
         },
         {
-            title: 'Ilgis be pakuotės',
+            title: 'Ilgis be pakuotės(cm)',
             dataIndex: 'lengthWithoutPackaging',
             width: '5%'
         },
         {
-            title: 'Plotis be pakuotės',
+            title: 'Plotis be pakuotės(cm)',
             dataIndex: 'widthWithoutPackaging',
             width: '5%'
         },
         {
-            title: 'Aukštis be pakuotės',
+            title: 'Aukštis be pakuotės(cm)',
             dataIndex: 'heightWithoutPackaging',
             width: '5%'
         },
         {
-            title: 'Ilgis su pakuotę',
+            title: 'Ilgis su pakuotę(cm)',
             dataIndex: 'lengthWithPackaging',
             width: '5%'
         },
         {
-            title: 'Plotis su pakuotę',
+            title: 'Plotis su pakuotę(cm)',
             dataIndex: 'widthWithPackaging',
             width: '5%'
         },
         {
-            title: 'Aukštis su pakuotę',
+            title: 'Aukštis su pakuotę(cm)',
             dataIndex: 'heightWithPackaging',
             width: '5%'
         },
@@ -182,6 +184,11 @@ function AdminProductScreen(props) {
         {
             title: 'Svoris netto',
             dataIndex: 'weightNetto',
+            width: '5%'
+        },
+        {
+            title: 'Supakavimo dėžės kodas',
+            dataIndex: 'packagingBoxCode',
             width: '5%'
         }
     ]
@@ -207,6 +214,10 @@ function AdminProductScreen(props) {
                     </Row>
                 </Col>
             </div>
+            {addVisibility === true ?
+                <AddProductComponent visible={addVisibility} onClose={unshowAddComponent}
+                    saveChanges={saveAddProduct} />
+                : null}
         </>
     )
 

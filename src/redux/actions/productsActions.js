@@ -60,6 +60,7 @@ export const createProduct = (postObj) => async(dispatch,getState)=>{
         })
         const token = getState().usersReducer.currentUser;
         const response = await ecommerceAPI.post(`/api/Products`,postObj,{headers: {Authorization: `Bearer ${token}`}})
+        console.log('yeye'+JSON.stringify(response.data))
         dispatch({
             type: 'PRODUCTS_CREATE_SUCCESS',
             payload: response.data

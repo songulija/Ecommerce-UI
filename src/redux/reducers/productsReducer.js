@@ -21,7 +21,7 @@ export const productsReducer = (state = { products: [] }, action) => {
             return { ...state, loading: true }
         case 'PRODUCTS_DELETE_SUCCESS':
             //return elements that dont have same id with action.payload
-            const updated_products = state.products.filter(x => x.id !== action.payload.id)
+            const updated_products = state.products.filter(x => x.id !== action.payload)
             return { ...state, loading: false, products: updated_products }
         case 'ERROR':
             return { ...state, loading: false, error: action.payload }
