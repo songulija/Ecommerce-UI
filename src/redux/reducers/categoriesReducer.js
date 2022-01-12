@@ -21,7 +21,7 @@ export const categoriesReducer = (state = {categories: []},action)=>{
             return {...state, loading: true}
         case 'CATEGORIES_DELETE_SUCCESS':
             // filter through categories. it will return only those elements that match condition
-            const updated_categories = state.categories.filter(x => x.id !== action.payload.id)
+            const updated_categories = state.categories.filter(x => x.id !== action.payload)
             return {...state, loading: false, categories:updated_categories}
         case 'ERROR':
             return {...state, loading: false, error: action.payload}

@@ -56,6 +56,7 @@ function AddCategoryComponent(props) {
                         filterOption={(input, option) =>
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
+                        value={category.parentId}
                     >
                         {categoriesReducer.categories.map((element,index)=>(
                             <Option key={element.id} value={element.id}>{element.title}</Option>

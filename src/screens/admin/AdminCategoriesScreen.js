@@ -8,6 +8,7 @@ import { getBrands, createBrand, updateBrand, deleteBrand } from '../../redux/ac
 import { useNavigate } from 'react-router-dom'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../../redux/actions/categoriesActions'
 import AddCategoryComponent from '../../components/admin_categories/AddCategoryComponent';
+import UpdateCategoryComponent from '../../components/admin_categories/UpdateCategoryComponent';
 
 function AdminCategoriesScreen(props) {
     const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function AdminCategoriesScreen(props) {
             visibility: true,
             record: record
         }))
+        console.log(updatedRecord.visibility)
     }
     const unshowUpdateComponent = () => {
         // updating updateRecord state values
@@ -57,13 +59,13 @@ function AdminCategoriesScreen(props) {
         dispatch(deleteCategory(id))
     }
     // if currentUser or role changes it will trigger useEffect again
-    useEffect(()=>{
-        if(usersReducer.currentUser !== null && userInfoReducer.role !== null){
+    useEffect(() => {
+        if (usersReducer.currentUser !== null && userInfoReducer.role !== null) {
             dispatch(getCategories())
-        }else{
+        } else {
             navigate('/')
         }
-    },[usersReducer.currentUser,userInfoReducer.role])
+    }, [usersReducer.currentUser, userInfoReducer.role])
 
     const columns = [
         {
@@ -118,11 +120,17 @@ function AdminCategoriesScreen(props) {
                     </Row>
                 </Col>
             </div>
-            {addVisibility === true?
-            <AddCategoryComponent visible={addVisibility} onClose={unshowAddComponent}
-                saveChanges={saveAddCategory}
-            />
-            :null}
+            {addVisibility === true ?
+                <AddCategoryComponent visible={addVisibility} onClose={unshowAddComponent}
+                    saveChanges={saveAddCategory}
+                />
+                : null}
+            {updatedRecord.visibility === true?
+            <UpdateCategoryComponent visible={updatedRecord.visibility}
+                record={updatedRecord.record} onClose={unshowUpdateComponent}
+                saveChanges={saveUpdateCategory}
+             />:
+            null}
         </>
     )
 }
