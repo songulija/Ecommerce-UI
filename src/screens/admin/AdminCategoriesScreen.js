@@ -7,6 +7,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { getBrands, createBrand, updateBrand, deleteBrand } from '../../redux/actions/brandsActions'
 import { useNavigate } from 'react-router-dom'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../../redux/actions/categoriesActions'
+import AddCategoryComponent from '../../components/admin_categories/AddCategoryComponent';
 
 function AdminCategoriesScreen(props) {
     const dispatch = useDispatch();
@@ -94,7 +95,7 @@ function AdminCategoriesScreen(props) {
         {
             title: 'Tėvo id',
             dataIndex: 'parentId',
-            width: 'č0%'
+            width: '20%'
         }
     ]
     return (
@@ -117,6 +118,11 @@ function AdminCategoriesScreen(props) {
                     </Row>
                 </Col>
             </div>
+            {addVisibility === true?
+            <AddCategoryComponent visible={addVisibility} onClose={unshowAddComponent}
+                saveChanges={saveAddCategory}
+            />
+            :null}
         </>
     )
 }
