@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Space, Select, Table, Row, Col, Card, Typography, Popconfirm } from 'antd';
+import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm } from 'antd';
 // import {Button} from 'react-bootstrap'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';

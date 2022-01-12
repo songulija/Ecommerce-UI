@@ -1,13 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/actions/usersActions'
 import { useNavigate, Link } from 'react-router-dom'
-import { Navbar, Container, Nav, NavDropdown, Dropdown, Row, Col } from 'react-bootstrap'
+import { Button,Navbar, Container, Nav, NavDropdown, Dropdown, Row, Col } from 'react-bootstrap'
 import '../styles/header.css'
 function Header(props) {
     const dispatch = useDispatch();
-    const [subMenu,setSubMenu] = useState(null)
+    const [subMenu, setSubMenu] = useState(null)
 
+    const usersReducer = useSelector((state) => state.usersReducer)
+    const userInfoReducer = useSelector((state) => state.userInfoReducer)
 
     const logoutUser = () => {
         dispatch(logout())
@@ -41,7 +43,7 @@ function Header(props) {
     const hideSubMenu = () => {
         let subMenuClone = subMenu;
         const menu = document.querySelector(".menu");
-        
+
         subMenuClone.style.animation = "slideRight 0.5s ease forwards";
         setTimeout(() => {
             subMenuClone.classList.remove("active");
@@ -103,7 +105,7 @@ function Header(props) {
                                 </div>
                                 <ul class="menu-main" onClick={(e) => onMenuMainClick(e)}>
                                     <li>
-                                        <a href="#">Home</a>
+                                        <a href="/">Home</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">New <i class="fa fa-angle-down"></i></a>
@@ -198,17 +200,17 @@ function Header(props) {
                                             </ul>
                                         </div>
                                     </li>
+                                    {userInfoReducer.role === "ADMINISTRATOR"?
                                     <li class="menu-item-has-children">
-                                        <a href="#">Pages <i class="fas fa-angle-down"></i></a>
+                                        <a href="#">Admin <i class="fas fa-angle-down"></i></a>
                                         <div class="sub-menu single-column-menu">
                                             <ul>
-                                                <li><a href="#">Login</a></li>
-                                                <li><a href="#">Register</a></li>
-                                                <li><a href="#">Faq</a></li>
-                                                <li><a href="#">404 Page</a></li>
+                                                <li><a href="/admin/brands">Prekių ženklai</a></li>
+                                                <li><a href="/admin/categories">Kategorijos</a></li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li>:null}
+
                                     <li>
                                         <a href="#">Contact</a>
                                     </li>
@@ -217,9 +219,18 @@ function Header(props) {
                         </div>
                         {/* <!-- menu end here --> */}
                         <div class="header-item item-right">
-                            <a href="#"><i class="fas fa-search"></i></a>
-                            <a href="#"><i class="far fa-heart"></i></a>
+                            {usersReducer.currentUser !== null ?
+                                <Button onClick={logoutUser}>Atsijungti</Button>
+                                : <div>
+                                    <a href='/login'>Prisijungti</a>
+                                    <a href='/register'>Registruotis</a>
+                                </div>
+                            }
+
+                            {/* <a href="#"><i class="fas fa-search"></i></a> */}
+                            {/* <a href="#"><i class="far fa-heart"></i></a> */}
                             <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
                             {/* <!-- mobile menu trigger --> */}
                             <div class="mobile-menu-trigger" onClick={toggleMenu}>
                                 <span></span>
