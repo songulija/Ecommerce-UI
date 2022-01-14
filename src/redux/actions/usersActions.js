@@ -137,7 +137,7 @@ export const deleteUser = (id) => async(dispatch,getState)=>{
             type: 'USERS_DELETE_REQUEST'
         })
         const token = getState().usersReducer.currentUser;
-        await ecommerceAPI.put(`/api/users/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+        await ecommerceAPI.delete(`/api/users/${id}`, {headers: {Authorization: `Bearer ${token}`}})
         dispatch({
             type: 'USERS_DELETE_SUCCESS',
             payload: id

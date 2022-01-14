@@ -1,16 +1,17 @@
-import react,{useState,useEffect} from 'react'
-import {useDispatch,useSelector} from 'react-redux'
+import react, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm, Tag } from 'antd';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'
-import {getUsers,createUser,updateUser,deleteUser} from '../../redux/actions/usersActions'
+import { getUsers, createUser, updateUser, deleteUser } from '../../redux/actions/usersActions'
+import AddUserComponent from '../../components/admin_users/AddUserComponent';
 
-function AdminUsersScreen(props){
+function AdminUsersScreen(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [addVisibility,setAddVisibility] = useState(false)
-    const [updatedRecord,setUpdatedRecord] = useState({
+    const [addVisibility, setAddVisibility] = useState(false)
+    const [updatedRecord, setUpdatedRecord] = useState({
         visibility: false,
         record: null
     })
@@ -29,7 +30,7 @@ function AdminUsersScreen(props){
         unshowAddComponent()
     }
     //for UpdateUserComponent
-    const showUpdateComponent = (record)=>{
+    const showUpdateComponent = (record) => {
         setUpdatedRecord(prevState => ({
             ...prevState,
             visibility: true,
@@ -43,45 +44,61 @@ function AdminUsersScreen(props){
             record: null
         }))
     }
-    const saveUpdateUser = (postObj,reducerObj)=>{
-        dispatch(updateUser(postObj,reducerObj))
+    const saveUpdateUser = (postObj, reducerObj) => {
+        dispatch(updateUser(postObj, reducerObj))
         unshowUpdateComponent()
     }
-    
-    const deleteUser = (id)=>{
+
+    const userDelete = (id) => {
         dispatch(deleteUser(id))
     }
     //if currentUser or role changes it will retrigger useEffect
-    useEffect(()=>{
-        if(usersReducer.currentUser !== null && userInfoReducer.role !== null){
+    useEffect(() => {
+        if (usersReducer.currentUser !== null && userInfoReducer.role !== null) {
             dispatch(getUsers())
-        }else{
+        } else {
             navigate('/')
-        }        
-    },[usersReducer.currentUser,userInfoReducer.role])
+        }
+    }, [usersReducer.currentUser, userInfoReducer.role])
     const columns = [
+        {
+            title: 'Atnaujinti',
+            width: '10%',
+            render: (text, record, index) => (
+                <Button onClick={(e) => showUpdateComponent(record)}>Atnaujinti</Button>
+            )
+        },
+        {
+            title: 'Ištrinti',
+            width: '10%',
+            render: (text,record,index)=>(
+                <Popconfirm title="Tikrai ištrinti?" onConfirm={() => userDelete(record.id)}>
+                    <Button type={'primary'} danger>Ištrinti</Button>
+                </Popconfirm>
+            )
+        },
         {
             title: 'Vartotojo vardas',
             dataIndex: 'username',
-            width: '25%'
+            width: '20%'
         },
         {
             title: 'Vardas',
             dataIndex: 'firstName',
-            width: '25%'
+            width: '20%'
         },
         {
             title: 'Pavardė',
             dataIndex: 'lastName',
-            width: '25%'
+            width: '20%'
         },
         {
             title: 'Telefono numeris',
             dataIndex: 'phoneNumber',
-            width: '25%'
+            width: '20%'
         }
-        
-        
+
+
     ]
     return (
         <>
@@ -104,6 +121,10 @@ function AdminUsersScreen(props){
                     </Row>
                 </Col>
             </div>
+            {addVisibility === true ?
+                <AddUserComponent visible={addVisibility} onClose={unshowAddComponent}
+                    saveChanges={saveAddUser} />
+                : null}
         </>
     )
 }
