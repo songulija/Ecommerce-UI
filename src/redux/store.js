@@ -6,6 +6,7 @@ import {categoriesReducer} from './reducers/categoriesReducer'
 import { brandsReducer } from './reducers/brandsReducer';
 import {productsReducer } from './reducers/productsReducer'
 import { userTypesReducer } from './reducers/userTypesReducer';
+import { ordersReducer } from './reducers/ordersReducer';
 import Cookies from 'js-cookie'
 
 const allReducers = combineReducers({
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
     categoriesReducer,
     brandsReducer,
     productsReducer,
-    userTypesReducer
+    userTypesReducer,
+    ordersReducer
 })
 
 //we want to get userInfo from localStorage if its there. if its  there we need to convert JSON string into object
