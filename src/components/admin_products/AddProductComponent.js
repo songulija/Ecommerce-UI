@@ -101,7 +101,7 @@ function AddProductComponent(props) {
                         <Input style={{ width: "100%" }} placeholder='Įveskite savikainą' value={product.costPrice} onChange={(e) => onDataChange(e.target.value, "costPrice")} />
                     </Form.Item>
                     <Form.Item key={"isDiscount"} name={'isDiscount'} label="Nuolaida galioja?">
-                        <Input style={{ width: "100%" }} type={'checkbox'} value={product.isDiscount} onChange={(e) => onDataChange(e.target.checked, "isDiscount")} />
+                        <Input  type={'checkbox'} value={product.isDiscount} onChange={(e) => onDataChange(e.target.checked, "isDiscount")} />
                     </Form.Item>
                     <Form.Item key={"discountPrice"} name={'discountPrice'} label="Kaina su nuolaida">
                         <Input style={{ width: "100%" }} placeholder='Įveskite kainą' value={product.discountPrice} onChange={(e) => onDataChange(e.target.value, "discountPrice")} />

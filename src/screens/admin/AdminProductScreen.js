@@ -7,6 +7,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { getProducts, createProduct, updateProduct, deleteProduct } from '../../redux/actions/productsActions'
 import { useNavigate } from 'react-router-dom'
 import AddProductComponent from '../../components/admin_products/AddProductComponent';
+import UpdateProductComponent from '../../components/admin_products/UpdateProductComponent';
 
 
 function AdminProductScreen(props) {
@@ -217,6 +218,10 @@ function AdminProductScreen(props) {
             {addVisibility === true ?
                 <AddProductComponent visible={addVisibility} onClose={unshowAddComponent}
                     saveChanges={saveAddProduct} />
+                : null}
+            {updatedRecord.visibility === true ?
+                <UpdateProductComponent record={updatedRecord.record} visible={updatedRecord.visibility}
+                    onClose={unshowUpdateComponent} saveChanges={saveUpdateProduct} />
                 : null}
         </>
     )
