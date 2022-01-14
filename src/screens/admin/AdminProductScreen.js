@@ -1,7 +1,6 @@
 import react, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Space, Table, Row, Col, Card, Typography, Popconfirm, Tag } from 'antd';
-// import {Button} from 'react-bootstrap'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
 import { getProducts, createProduct, updateProduct, deleteProduct } from '../../redux/actions/productsActions'

@@ -7,6 +7,7 @@ import {Container} from 'react-bootstrap'
 import AdminBrandsScreen from './screens/admin/AdminBrandsScreen';
 import AdminCategoriesScreen from './screens/admin/AdminCategoriesScreen';
 import AdminProductScreen from './screens/admin/AdminProductScreen';
+import AdminUsersScreen from './screens/admin/AdminUsersScreen';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/admin/brands' element={<AdminBrandsScreen/>}/>
           <Route path='/admin/categories' element={<AdminCategoriesScreen/>}/>
           <Route path='/admin/products' element={<AdminProductScreen/>}/>
+          <Route path='/admin/users' element={<AdminUsersScreen/>}/>
           <Route path='/' element={<HomeScreen/>} exact/>
         </Routes>
       </Router>

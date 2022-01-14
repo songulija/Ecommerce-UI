@@ -78,3 +78,108 @@ export const getUserData = () => async(dispatch,getState)=>{
         });
     }
 }
+
+export const getUsers = () => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'USERS_FETCH_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        const response = await ecommerceAPI.get(`/api/users`,{headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'USERS_FETCH_SUCCESS',
+            payload: response.data
+        })
+    }catch(error){
+        if(error === undefined){
+            dispatch({
+                type: 'USERS_FETCH_FAIL',
+                payload: 'Oopsie... System error. Try again later.'
+            })
+        }else{
+            dispatch({
+                type: 'USERS_FETCH_FAIL',
+                payload: error.response.data
+            })
+        }
+    }
+}
+
+export const updateUser = (postObj,reducerObj) => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'USERS_UPDATE_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        await ecommerceAPI.put(`/api/users/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'USERS_UPDATE_SUCCESS',
+            payload: reducerObj
+        })
+    }catch(error){
+        if(error === undefined){
+            dispatch({
+                type: 'USERS_UPDATE_FAIL',
+                payload: 'Oopsie... System error. Try again later.'
+            })
+        }else{
+            dispatch({
+                type: 'USERS_UPDATE_FAIL',
+                payload: error.response.data
+            })
+        }
+    }
+}
+//FOR ADMIN
+export const deleteUser = (id) => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'USERS_DELETE_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        await ecommerceAPI.put(`/api/users/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'USERS_DELETE_SUCCESS',
+            payload: id
+        })
+    }catch(error){
+        if(error === undefined){
+            dispatch({
+                type: 'USERS_DELETE_FAIL',
+                payload: 'Oopsie... System error. Try again later.'
+            })
+        }else{
+            dispatch({
+                type: 'USERS_DELETE_FAIL',
+                payload: error.response.data
+            })
+        }
+    }
+}
+
+
+export const createUser = (postObj) => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'USERS_CREATE_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        const response = await ecommerceAPI.post(`/api/users/create`,postObj,{headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'USERS_CREATE_SUCCESS',
+            payload: response.data
+        })
+    }catch(error){
+        if(error === undefined){
+            dispatch({
+                type: 'USERS_CREATE_FAIL',
+                payload: 'Oopsie... System error. Try again later.'
+            })
+        }else{
+            dispatch({
+                type: 'USERS_CREATE_FAIL',
+                payload: error.response.data
+            })
+        }
+    }
+}
