@@ -6,6 +6,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'
 import { getUsers, createUser, updateUser, deleteUser } from '../../redux/actions/usersActions'
 import AddUserComponent from '../../components/admin_users/AddUserComponent';
+import UpdateUserComponent from '../../components/admin_users/UpdateUserComponent';
 
 function AdminUsersScreen(props) {
     const dispatch = useDispatch();
@@ -47,6 +48,8 @@ function AdminUsersScreen(props) {
     const saveUpdateUser = (postObj, reducerObj) => {
         dispatch(updateUser(postObj, reducerObj))
         unshowUpdateComponent()
+        console.log(JSON.stringify(postObj))
+        console.log(JSON.stringify(reducerObj))
     }
 
     const userDelete = (id) => {
@@ -71,7 +74,7 @@ function AdminUsersScreen(props) {
         {
             title: 'Ištrinti',
             width: '10%',
-            render: (text,record,index)=>(
+            render: (text, record, index) => (
                 <Popconfirm title="Tikrai ištrinti?" onConfirm={() => userDelete(record.id)}>
                     <Button type={'primary'} danger>Ištrinti</Button>
                 </Popconfirm>
@@ -124,6 +127,10 @@ function AdminUsersScreen(props) {
             {addVisibility === true ?
                 <AddUserComponent visible={addVisibility} onClose={unshowAddComponent}
                     saveChanges={saveAddUser} />
+                : null}
+            {updatedRecord.visibility === true ?
+                <UpdateUserComponent visible={updatedRecord.visibility} record={updatedRecord.record}
+                    onClose={unshowUpdateComponent} saveChanges={saveUpdateUser} />
                 : null}
         </>
     )

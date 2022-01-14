@@ -34,7 +34,7 @@ export const usersReducer = (state = { currentUser: null, users: []}, action) =>
         case 'USERS_UPDATE_SUCCESS':
             //map and search object with same id as action.payload.id. then change that obj to action.payload
             const users_clone = [...state.users]
-            const updated_clones = users_clone.map(x => x.username === action.payload.username?action.payload:x)
+            const updated_clones = users_clone.map(x => x.id === action.payload.id?action.payload:x)
             return {...state, loading: false, users: updated_clones}
         case 'USERS_UPDATE_FAIL':
             return {...state, loading: false, error: action.payload}

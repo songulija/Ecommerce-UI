@@ -36,7 +36,7 @@ function AddUserComponent(props) {
     }
     useEffect(() => {
         dispatch(getUserTypes())
-    },[])
+    }, [])
     return (
         <>
             <Modal
