@@ -1,6 +1,6 @@
 import ecommerceAPI from '../ecommerceAPI'
 
-export const getProducts = () => async(dispatch,getState)=>{
+export const getProducts = (callback) => async(dispatch,getState)=>{
     try{
         dispatch({
             type: 'PRODUCTS_FETCH_REQUEST'
@@ -11,6 +11,7 @@ export const getProducts = () => async(dispatch,getState)=>{
             type: 'PRODUCTS_FETCH_SUCCESS',
             payload: response.data
         })
+        callback()
     }catch(error){
         if(error === undefined){
             dispatch({
@@ -26,7 +27,7 @@ export const getProducts = () => async(dispatch,getState)=>{
     }
 }
 
-export const getProduct = (id) => async(dispatch,getState)=>{
+export const getProduct = (id,callback) => async(dispatch,getState)=>{
     try{
         dispatch({
             type: 'PRODUCT_FETCH_REQUEST'
@@ -37,6 +38,7 @@ export const getProduct = (id) => async(dispatch,getState)=>{
             type: 'PRODUCT_FETCH_SUCCESS',
             payload: response.data
         })
+        callback();
     }catch(error){
         if(error === undefined){
             dispatch({

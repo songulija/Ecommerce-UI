@@ -1,20 +1,98 @@
 
 
-body{
+/* body{
 	line-height: 1.5;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Muli', sans-serif;
 	font-weight: 400;
 	overflow-x: hidden;
-}
+} */
+
+
 *{
 	margin:0;
+	padding: 0;
 	box-sizing: border-box;
 }
+
+.first-menu{
+	width: 100%;
+	padding: 10px 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo-container{
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	transition: transform .2s;
+}
+.logo-container a{
+	color: black!important;
+}
+.logo-container:hover{
+	transform: scale(1.1);
+}
+
+
+.logo-container>a>p{
+	font-size: 24px;
+	margin: 0!important;
+}
+
+.logo-container:hover{
+
+}
+
+.logo{
+	width: 1.8rem;
+	padding-bottom: 10px;
+}
+
+.icons-container{
+	display: flex;
+	align-items: center;
+	/* justify-content: right; */
+}
+
+/* container that holds logout and profile icons for logged user */
+.user-icons{
+	display: flex;
+}
+
+.icons-container img{
+	width: 24px;
+}
+/* to transition on hover to different color with mini animation */
+.icons-container a{
+	transition: transform .2s; /* Animation for scaling. it will scale on hover in 0.2 s*/
+}
+
+.icons-container a:hover{
+	transform: scale(1.2);
+}
+
+.logout-icon-container{
+	padding: 8px 16px;
+	cursor: pointer;
+	transition: transform .2s; /* Animation for scaling. it will scale on hover in 0.2 s*/
+}
+
+.logout-icon-container:hover{
+	transform: scale(1.2);
+}
+
+
+
+
+/* second main menu */
+
 
 :before,:after{
 	box-sizing: border-box;
 }
-.container{
+.header-container{
 	max-width: 1200px;
 	margin:auto;
 }
@@ -39,11 +117,11 @@ a{
 	width: 100%;
 	position: relative;
 	z-index: 99;
-	padding:15px;
+	padding:5px;
 }
-.header .item-left{
+/* .header .item-left{
 	flex:0 0 17%;
-}
+} */
 .header .logo a{
 	font-size: 30px;
 	color:#000000;
@@ -51,16 +129,16 @@ a{
 	text-decoration: none;
 }
 .header .item-center{
-	flex:0 0 66%;
+	flex:0 0 90%;
 }
 .header .item-right{
-	flex:0 0 17%;
+	flex:0 0 10%;
 	display: flex;
 	justify-content: flex-end;
 }
 .header .item-right a{ 
      text-decoration: none;
-     font-size: 16px;
+     font-size: 25px;
      color:#555555;
      display: inline-block;
      margin-left: 10px;
@@ -387,6 +465,7 @@ a{
 	  visibility: visible;
 	  opacity:1;	
 	}
-}
+} 
+
 
 

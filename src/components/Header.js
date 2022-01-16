@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/actions/usersActions'
-import { useNavigate, Link } from 'react-router-dom'
-import { Button,Navbar, Container, Nav, NavDropdown, Dropdown, Row, Col } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Image } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux'
+import logo1Svg from '../images/furnitures/Logo-1.svg'
+import searchSvg from '../images/furnitures/Icon-search.svg'
+import userSvg from '../images/furnitures/Icon-user.svg'
+import bagSvg from '../images/furnitures/Bag.svg'
+import logoutSvg from '../images/logout-1.svg'
 import '../styles/header.css'
+
 function Header(props) {
     const dispatch = useDispatch();
     const [subMenu, setSubMenu] = useState(null)
@@ -53,46 +59,99 @@ function Header(props) {
         setSubMenu(subMenuClone)
     }
 
+
     return (
         <>
-            {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand href="/">Ecommerce</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#features">Features</Nav.Link>
-                            <Nav.Link href="#pricing">Pricing</Nav.Link>
-                            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                        <Nav>
-                            
-                            {usersReducer.currentUser !== null ?
-                                <Button onClick={logoutUser}>Logout</Button> :
-                                <Nav.Link href="/login">Login</Nav.Link>}
+            <div className='first-menu'>
+                <div className='logo-container'>
+                    <Image className='logo' src={logo1Svg} alt="Logo" />
+                    {/* <a href='/'><p>ALTURA</p></a> */}
+                    <Nav.Link href="/">
+                        <p>ALTURA</p>
+                    </Nav.Link>
+                </div>
+                <div className='icons-container'>
+                    <Nav.Link href="/search" style={{ fontWeight: '500', fontSize: '18px' }}>
+                        <img src={searchSvg} alt="Paieška" />
+                    </Nav.Link>
+                    {usersReducer.currentUser !== null ?
+                        <div className='user-icons'>
+                            <Nav.Link href="/profile" style={{ fontWeight: '500', fontSize: '18px' }}>
+                                <img src={userSvg} alt="Profilis" />
+                            </Nav.Link>
+                            <div className='logout-icon-container' onClick={logoutUser}>
+                                <img src={logoutSvg} alt="Atsijungti" />
+                            </div>
 
+                        </div>
+                        : <Nav.Link href="/login" style={{ fontWeight: '500', fontSize: '18px' }}>
+                            <img src={userSvg} alt="Profilis" />
+                        </Nav.Link>
+                    }
+
+                    <Nav.Link href="/cart" style={{ fontWeight: '500', fontSize: '18px' }}>
+                        <img src={bagSvg} alt="Krepšelis" />
+                    </Nav.Link>
+                </div>
+            </div>
+            {/* <Navbar bg="light" variant={'light'} expand="lg" collapseOnSelect>
+                <Container fluid>
+                    <Navbar.Brand href="/" style={{ fontWeight: '600', fontSize: '22px' }}>Ecommerce</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav
+                            className="me-auto my-2 my-lg-0 py-2"
+                        >
+                            <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px' }}>Pagrindinis</Nav.Link>
+                            <Nav.Link href="/about-us" style={{ fontWeight: '500', fontSize: '18px' }}>Apie mus</Nav.Link>
+                            {usersReducer.currentUser ? (
+                                <NavDropdown title="Admin" id="basic-nav-dropdown" style={{ fontWeight: '500', fontSize: '18px' }}>
+                                    <NavDropdown.Item href='/admin/brands'>Prekių Ženklai</NavDropdown.Item>
+                                    <NavDropdown.Item href='/admin/categories'>Kategorijos</NavDropdown.Item>
+                                    <NavDropdown.Item href='/admin/products'>Produktai</NavDropdown.Item>
+                                    <NavDropdown.Item href='/admin/users'>Naudotojai</NavDropdown.Item>
+                                </NavDropdown>
+                            ) : (
+                                <p></p>
+                            )}
+                            {usersReducer.currentUser ? (
+                                <NavDropdown title="Naudotojas" id='username' style={{ fontWeight: '500', fontSize: '18px' }}>
+                                    <NavDropdown.Item href="/profile">Profilis</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={logoutUser}>
+                                        Logout
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            ) : (
+                                <Nav.Link href="/login" style={{ fontWeight: '500', fontSize: '18px' }}>
+                                    <i className='fas fa-user'></i> Sign In
+                                </Nav.Link>
+                            )}
+                            <Nav.Link href='/cart' style={{ fontWeight: '500', fontSize: '18px' }}>
+                                <i className='fas fa-shopping-cart'></i> Cart
+                            </Nav.Link>
                         </Nav>
+                        <Form className="d-flex">
+                            <FormControl
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                aria-label="Search"
+                            />
+                            <Button variant="outline-success">Search</Button>
+                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar> */}
-            {/* header start   */}
-            {/* <!-- header start --> */}
-            {/* <div className='main'> */}
-            {/* <!-- header start --> */}
             <header class="header">
-                <div class="container">
+                <div class="header-container">
                     <div class="container-row v-center">
-                        <div class="header-item item-left">
+                        {/* <div class="header-item item-left">
                             <div class="logo">
                                 <a href="#">MyStore</a>
                             </div>
-                        </div>
+                        </div> */}
+
+
                         {/* <!-- menu start here --> */}
                         <div class="header-item item-center">
                             <div class="menu-overlay" onClick={toggleMenu}>
@@ -200,18 +259,18 @@ function Header(props) {
                                             </ul>
                                         </div>
                                     </li>
-                                    {userInfoReducer.role === "ADMINISTRATOR"?
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Admin <i class="fas fa-angle-down"></i></a>
-                                        <div class="sub-menu single-column-menu">
-                                            <ul>
-                                                <li><a href="/admin/brands">Prekių ženklai</a></li>
-                                                <li><a href="/admin/categories">Kategorijos</a></li>
-                                                <li><a href="/admin/products">Produktai</a></li>
-                                                <li><a href="/admin/users">Naudotojai</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>:null}
+                                    {userInfoReducer.role === "ADMINISTRATOR" ?
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Admin <i class="fas fa-angle-down"></i></a>
+                                            <div class="sub-menu single-column-menu">
+                                                <ul>
+                                                    <li><a href="/admin/brands">Prekių ženklai</a></li>
+                                                    <li><a href="/admin/categories">Kategorijos</a></li>
+                                                    <li><a href="/admin/products">Produktai</a></li>
+                                                    <li><a href="/admin/users">Naudotojai</a></li>
+                                                </ul>
+                                            </div>
+                                        </li> : null}
 
                                     <li>
                                         <a href="#">Contact</a>
@@ -220,18 +279,19 @@ function Header(props) {
                             </nav>
                         </div>
                         {/* <!-- menu end here --> */}
+                        {/* <Button onClick={logoutUser}>Atsijungti</Button> */}
                         <div class="header-item item-right">
-                            {usersReducer.currentUser !== null ?
-                                <Button onClick={logoutUser}>Atsijungti</Button>
+                            {/* {usersReducer.currentUser !== null ?
+                                <a href='#'><i onClick={logoutUser} class="fas fa-sign-out-alt"></i></a>
                                 : <div>
                                     <a href='/login'>Prisijungti</a>
                                     <a href='/register'>Registruotis</a>
                                 </div>
-                            }
+                            } */}
 
                             {/* <a href="#"><i class="fas fa-search"></i></a> */}
                             {/* <a href="#"><i class="far fa-heart"></i></a> */}
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                            {/* <a href="#"><i class="fas fa-shopping-cart"></i></a> */}
 
                             {/* <!-- mobile menu trigger --> */}
                             <div class="mobile-menu-trigger" onClick={toggleMenu}>
@@ -241,7 +301,6 @@ function Header(props) {
                     </div>
                 </div>
             </header>
-
         </>
     )
 }

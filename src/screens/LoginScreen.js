@@ -1,10 +1,10 @@
 import react, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Alert, Form } from 'react-bootstrap'
+import { Alert, Form,Row,Col } from 'react-bootstrap'
 import { Spin } from 'antd';
 import "../styles/login.css";
 import { login, getUserData } from '../redux/actions/usersActions'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 
 function LoginScreen(props) {
@@ -77,11 +77,11 @@ function LoginScreen(props) {
                     </Form.Group>
                     <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Prisijungti</button>
 
-                    {/* <Row className='py-3'>
+                    <Row className='py-3'>
                             <Col>
                                 Naujas naudotojas? <Link to={'/register'}>Registracija</Link>
                             </Col>
-                        </Row> */}
+                        </Row>
                 </Form>
             </div>
         </>

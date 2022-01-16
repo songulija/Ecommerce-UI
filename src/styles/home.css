@@ -1,0 +1,10 @@
+/* banner section */
+.banner-section{
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 100%;
+  }
