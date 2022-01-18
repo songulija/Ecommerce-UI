@@ -41,9 +41,9 @@
 	margin: 0!important;
 }
 
-.logo-container:hover{
+/* .logo-container:hover{
 
-}
+} */
 
 .logo{
 	width: 1.8rem;
@@ -240,15 +240,7 @@ a{
 .header .menu > ul > li:hover > a{
 	color:#ea4636;
 }
-/* banner section */
-.banner-section{
-  background-image: url('../images/banner.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 700px;
-  width: 100%;
-  display: block;
-}
+
 .mobile-menu-head,
 .mobile-menu-trigger{
 	display: none;

@@ -1,6 +1,5 @@
 {
   "name": "ecommerce-ui",
-  "proxy": "https://localhost:44381",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
